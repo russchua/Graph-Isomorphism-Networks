@@ -1,12 +1,12 @@
-# Graph Isomorphism Networks?
+# How Powerful are Graph Neural Networks?
 
-A Tensorflow 2.0 implementation of Graph Isomorphism Networks. 
+This repository is the official PyTorch implementation of the experiments in the following paper: 
 
-The original paper: "Keyulu Xu*, Weihua Hu*, Jure Leskovec, Stefanie Jegelka. How Powerful are Graph Neural Networks? ICLR 2019." 
+Keyulu Xu*, Weihua Hu*, Jure Leskovec, Stefanie Jegelka. How Powerful are Graph Neural Networks? ICLR 2019. 
 
 [arXiv](https://arxiv.org/abs/1810.00826) [OpenReview](https://openreview.net/forum?id=ryGs6iA5Km) 
 
-If you make use of the code/experiment or GIN algorithm in your work, please cite their paper (Bibtex below).
+If you make use of the code/experiment or GIN algorithm in your work, please cite our paper (Bibtex below).
 ```
 @inproceedings{
 xu2018how,
@@ -18,12 +18,8 @@ url={https://openreview.net/forum?id=ryGs6iA5Km},
 }
 ```
 
-## Google Colab Test run
-Access the .ipynb in the repository and run the code.
-
-
 ## Installation
-Install Tensorflow 2.0.
+Install PyTorch following the instuctions on the [official website] (https://pytorch.org/). The code has been tested over PyTorch 0.4.1 and 1.0.0 versions.
 
 Then install the other dependencies.
 ```
@@ -51,3 +47,4 @@ python main.py --help
 ```
 
 to learn hyper-parameters to be specified.
+
