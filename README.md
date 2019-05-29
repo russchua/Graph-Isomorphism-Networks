@@ -6,7 +6,7 @@ The original paper: "Keyulu Xu*, Weihua Hu*, Jure Leskovec, Stefanie Jegelka. Ho
 
 [arXiv](https://arxiv.org/abs/1810.00826) [OpenReview](https://openreview.net/forum?id=ryGs6iA5Km) 
 
-If you make use of the code/experiment or GIN algorithm in your work, please cite our paper (Bibtex below).
+If you make use of the code/experiment or GIN algorithm in your work, please cite their paper (Bibtex below).
 ```
 @inproceedings{
 xu2018how,
