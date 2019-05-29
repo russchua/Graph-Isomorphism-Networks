@@ -1,6 +1,7 @@
 # Graph Isomorphism Networks?
 
 A Tensorflow 2.0 implementation of Graph Isomorphism Networks. 
+
 The original paper: "Keyulu Xu*, Weihua Hu*, Jure Leskovec, Stefanie Jegelka. How Powerful are Graph Neural Networks? ICLR 2019." 
 
 [arXiv](https://arxiv.org/abs/1810.00826) [OpenReview](https://openreview.net/forum?id=ryGs6iA5Km) 
