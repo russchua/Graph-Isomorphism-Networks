@@ -1,6 +1,7 @@
 import easydict
 import numpy as np
 from tqdm import tqdm
+import tensorflow as tf
 
 args = easydict.EasyDict({
     "dataset": 'MUTAG',
