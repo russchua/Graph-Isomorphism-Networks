@@ -3,6 +3,9 @@ import numpy as np
 from tqdm import tqdm
 import tensorflow as tf
 
+from util import load_data, separate_data
+from models.graphcnn import GraphCNN
+
 args = easydict.EasyDict({
     "dataset": 'MUTAG',
     "device": 0,
