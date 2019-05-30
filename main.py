@@ -27,13 +27,7 @@ args = easydict.EasyDict({
     
 })
 
-
-
-
-
 loss_object = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True)
-
-
 
 graphs, num_classes = load_data(args.dataset, args.degree_as_tag)
 train_graphs, test_graphs = separate_data(graphs, args.seed, args.fold_idx)
@@ -42,8 +36,6 @@ labels = tf.constant([graph.label for graph in train_graphs])
 model = GraphCNN(args.num_layers, args.num_mlp_layers, args.hidden_dim, num_classes, args.final_dropout, args.learn_eps, args.graph_pooling_type, args.neighbor_pooling_type)
 
 optimizer = tf.keras.optimizers.Adam(lr = args.lr)
-
-
 
 #def train(loss,model,opt,original):    
 def train(args,model,train_graphs,opt,epoch):
@@ -58,9 +50,7 @@ def train(args,model,train_graphs,opt,epoch):
     loss_accum = 0
     with tf.GradientTape() as tape:
       output = model(batch_graph)
-
       loss = loss_object(labels,output)
-
       
     gradients = tape.gradient(loss,model.trainable_variables)
     gradient_variables = zip(gradients, model.trainable_variables)
@@ -70,11 +60,9 @@ def train(args,model,train_graphs,opt,epoch):
     #report
     pbar.set_description(f'epoch: {epoch}')
     
-    #return reconstruction_error
   average_loss = loss_accum/total_iters
   print(f'loss training: {average_loss}')
   return average_loss
-
 
 ###pass data to model with minibatch during testing to avoid memory overflow (does not perform backpropagation)
 def pass_data_iteratively(model, graphs, minibatch_size = 64):
@@ -83,8 +71,7 @@ def pass_data_iteratively(model, graphs, minibatch_size = 64):
     for i in range(0, len(graphs), minibatch_size):
         sampled_idx = idx[i:i+minibatch_size]
         if len(sampled_idx) == 0:
-            continue
-        #output.append(model([graphs[j] for j in sampled_idx]).detach())        
+            continue    
         output.append(model([graphs[j] for j in sampled_idx]))
     return tf.concat(output,0)
 
@@ -100,24 +87,15 @@ def tf_check_acc(pred,labels):
   
 def test(args, model, train_graphs, test_graphs, epoch):
     output = pass_data_iteratively(model, train_graphs)
-    #print(f'This is the output: {output}')
-    #pred = output.max(1, keepdim=True)[1]  #This gives the index of the output with the largest number
     pred = tf.argmax(output,1)
-    #labels = torch.LongTensor([graph.label for graph in train_graphs]).to(device)
     labels = tf.constant([graph.label for graph in train_graphs])
-    #print(f'These are the labels: {labels}\n\nThese are the predictions: {pred}')
-    
-    #correct = pred.eq(labels.view_as(pred)).sum().cpu().item()
-    #print(pred,labels)
+
     correct = tf_check_acc(pred,labels)
     acc_train = correct / float(len(train_graphs))
 
     output = pass_data_iteratively(model, test_graphs)
-    #pred = output.max(1, keepdim=True)[1]
     pred = tf.argmax(output,1)
     labels = tf.constant([graph.label for graph in test_graphs])
-    #labels = torch.LongTensor([graph.label for graph in test_graphs]).to(device)
-    #correct = pred.eq(labels.view_as(pred)).sum().cpu().item()
     correct = tf_check_acc(pred,labels)
     acc_test = correct / float(len(test_graphs))
 
@@ -125,18 +103,12 @@ def test(args, model, train_graphs, test_graphs, epoch):
 
     return acc_train, acc_test
 
-
-
 for epoch in range(1, args.epochs + 1):
-    #global_step = global_step + 1
     if epoch % 50 == 0:
       optimizer.lr = optimizer.lr * 0.5    
     print (optimizer.lr)
     avg_loss = train(args, model, train_graphs, optimizer, epoch)
     acc_train, acc_test = test(args, model, train_graphs, test_graphs, epoch)
-
-    if epoch % 50 == 0:
-      optimizer.lr = optimizer.lr * 0.5
     
     if not args.filename == "":
         with open(args.filename, 'w') as f:
