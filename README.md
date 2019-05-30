@@ -20,7 +20,7 @@ url={https://openreview.net/forum?id=ryGs6iA5Km},
 I created this Tensorflow 2.0 implementation for educational purposes, and to further my knowledge in this domain.
 
 ## Previewing
-Run Tensorflow_2_0_Graph_Isomorphism_Networks_(GIN).ipynb
+Run [Tensorflow_2_0_Graph_Isomorphism_Networks_(GIN).ipynb](https://github.com/calciver/Graph-Isomorphism-Networks/blob/master/Tensorflow_2_0_Graph_Isomorphism_Networks_(GIN).ipynb)
 
 In the colab sheet, you can choose to run different datasets and modify the training properties of the Graph Isomorphism Networks
 
