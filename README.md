@@ -6,7 +6,7 @@ Keyulu Xu*, Weihua Hu*, Jure Leskovec, Stefanie Jegelka. How Powerful are Graph 
 
 [arXiv](https://arxiv.org/abs/1810.00826) [OpenReview](https://openreview.net/forum?id=ryGs6iA5Km) 
 
-If you make use of the code/experiment or GIN algorithm in your work, please cite our paper (Bibtex below).
+If you make use of the code/experiment or GIN algorithm in your work, please cite their paper (Bibtex below).
 ```
 @inproceedings{
 xu2018how,
@@ -17,7 +17,7 @@ year={2019},
 url={https://openreview.net/forum?id=ryGs6iA5Km},
 }
 ```
-This Tensorflow 2.0 implementation was created for educational purposes.
+I created this Tensorflow 2.0 implementation for educational purposes, and to further my knowledge in this domain.
 
 ## Previewing
 Run Tensorflow_2_0_Graph_Isomorphism_Networks_(GIN).ipynb
