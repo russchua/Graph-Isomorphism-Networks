@@ -1,6 +1,5 @@
 import tensorflow as tf
 
-#Replace model with l
 class MLP(tf.keras.layers.Layer):
   def __init__(self,num_layers, hidden_dim, output_dim):
     '''
@@ -13,7 +12,6 @@ class MLP(tf.keras.layers.Layer):
     self.linear_or_not = True #default is linear model
     self.num_layers = num_layers
     
-    
     if num_layers < 1:
         raise ValueError("number of layers should be positive!")
     elif num_layers == 1:
@@ -23,19 +21,13 @@ class MLP(tf.keras.layers.Layer):
         #Multi-layer model
         self.linear_or_not = False
         self.multi = Multi_model(layers = num_layers,hidden_dim = hidden_dim,output_dim = output_dim)
-             
-        
-        
-
+                     
   def call(self,input_features):
-    
     if self.linear_or_not:
         #If linear model
-        #print('Linear Model')
         return self.linear(input_features)
     else:
         #If MLP
-        #print('Multi Model')
         return self.multi(input_features)
     
   
@@ -51,20 +43,14 @@ class Linear_model(tf.keras.layers.Layer):
 class Multi_model(tf.keras.layers.Layer):
   def __init__(self,layers,hidden_dim,output_dim):
     super(Multi_model,self).__init__()
-    
     self.layers = layers
-    #self.hidden_dim = hidden_dim
-    #self.output_dim = output_dim
     self.dense_list = []
     self.batch_list = []
     
-  
     for i in range(layers-1):
       self.dense_list.append(tf.keras.layers.Dense(units = hidden_dim))
       self.batch_list.append(tf.keras.layers.BatchNormalization())
     self.dense_list.append(tf.keras.layers.Dense(units = output_dim))
-    
-  
     
   def call(self,input_features):
     for i in range(self.layers-1):
