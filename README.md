@@ -44,13 +44,4 @@ and run
 python main.py
 ```
 
-Default parameters are not the best performing-hyper-parameters. Hyper-parameters need to be specified through the commandline arguments. Please refer to our paper for the details of how we set the hyper-parameters.
-
-Type
-
-```
-python main.py --help
-```
-
-to learn hyper-parameters to be specified.
-
+Note: Default parameters are not the best performing-hyper-parameters. Please refer to the above paper for the details of how the researchers above set their hyper-parameters.
